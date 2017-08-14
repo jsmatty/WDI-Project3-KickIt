@@ -8,10 +8,12 @@ const boardSchema = mongoose.Schema({
   images: String
 });
 
-
-const journalSchema = mongoose.Schema ({
-  dailyEntry: String,
+const entrySchema = mongoose.Schema({
+  content: String,
   meter: Number,
+})
+const journalSchema = mongoose.Schema ({
+  dailyEntry: {entrySchema},
   weeklyGoal: String,
   monthlyAccomplishments: String
 });
@@ -31,7 +33,8 @@ const userSchema = mongoose.Schema ({
 const Board = mongoose.model('Board', boardSchema);
 const Journal = mongoose.model('Journal', journalSchema);
 const User = mongoose.model('User', userSchema);
+const Entry = mongoose.model('Entry', entrySchema);
 //module.exports = {
 module.exports = {
-  Board, Journal, User
+  Board, Journal, User, Entry
 }
