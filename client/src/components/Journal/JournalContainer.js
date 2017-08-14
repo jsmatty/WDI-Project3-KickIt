@@ -10,21 +10,22 @@ class JournalContainer extends Component{
         super(props)
   }
     state = {
-        cArray: []
+        journalEntries: []
     };
     //fetching data with axios 
     componentWillMount(){
         axios.get('/api/journal').then((res) => {
-            const cArray = res.data;
+            const entries = res.data;
             console.log(res.data[0]);
             this.setState({
-                cArray: cArray
+                journalEntries: entries
             })
         })
     }
         render(){
             return(
-                   <DailyEntry />
+                  <DailyEntry />
+                  <JournalEntries journal={this.state.journalEntries} />
             )
     }
 }

@@ -10,18 +10,6 @@ router.get("/", (req,res) => {
   });
 });
 
-// router.post("/", (req, res) => {
-//   const questions = req.body.questions.map(question => {
-//     return new Question(question);
-//   });
-//   constJournal = newJournal({
-//     name: req.bodyJournal,
-//     questions
-//   });
-// Journal.save().then(Journal) => {
-//     console.log("Success!");
-//     res.jsonJournal);
-//   });
-// })
+
 
 module.exports = router;
