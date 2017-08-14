@@ -5,8 +5,10 @@ const mongoose = require ('mongoose');
 //created variables = new schema
 const boardSchema = mongoose.Schema({
   articles: [String],
-  images: Image,
+  images: String
 });
+
+
 const journalSchema = mongoose.Schema ({
   dailyEntry: String,
   meter: Number,
