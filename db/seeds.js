@@ -26,7 +26,8 @@ const DailyTwo = new Entry({
   meter: 3
 });
 const DailyThree = new Entry({
-  content: "Got me thinking about the beginning of my recovery. The last few months of using. The first few months of being clean. The white knuckling, hardcore, mundane sweat and tears and boredom of it all.",
+  content: "Addictedtohiding - I just want to let you know, this is in part for you. Because I know where you are. In between place where you know what you are doing and what you have to do. The pain, the guilt, the selfishness in it. The terrified, unrelenting fear in it. I understand. And if knowing just one person has been there, maybe your stay in this place will be shorter than it could be. Following are some journal entries from a few years ago."
+,
   meter: 2
 });
 const DailyFour = new Entry({

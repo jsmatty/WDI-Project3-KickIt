@@ -5,11 +5,11 @@ import Meter from './Meter';
 class DailyEntry extends Component{
   constructor(props){
         super(props)
-  }
+  
     state = {
         cArray: []
     };
-    //fetching data with axios 
+  }  //fetching data with axios 
     componentWillMount(){
         axios.get('/api/journal').then((res) => {
             const cArray = res.data;
