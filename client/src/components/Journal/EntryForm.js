@@ -3,17 +3,16 @@ import axios from 'axios';
 
 
 class EntryForm extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
-      content : "",
-      meter : ""
+      content : " ",
+      meter : " "
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   handleChange(event){
   // set variables for our elements, their name attributes, and their values
   const target = event.target;
@@ -39,9 +38,10 @@ class EntryForm extends Component {
 // This function will handle what happens when submit is fired.
 // This where axios will hit the POST route of our API
 handleSubmit(event){
-    axios.post('http://localhost:3001/api/s', {
-      content: this.state.content,
-      meter: this.state.meter
+    axios.post('/api/entry', this.state).then(res => {
+      console.log('POSTING')
+      console.log(this.props.journal);
+
     })
     // alert("helloos" + this.state.name);
     // alert(this.state.description)
@@ -49,14 +49,13 @@ handleSubmit(event){
 render(){
     return(
         <form onSubmit = {this.handleSubmit}>
-        <label>Title</label>
-        <input type="text" name ="name" value={this.state.name} onChange={(e) => this.handleChange(e)} />
-        <label>Description</label>
-        <input type="text" name ="description" value={this.state.description} onChange={(e) => this.handleChange(e)} />
-        <label>About</label>
+        <label>Content</label>
+        <input type="text" name ="content" value={this.state.content} onChange={(e) => this.handleChange(e)} />
+        <label>Meter</label>
+        <input type="text" name ="meter" value={this.state.meter} onChange={(e) => this.handleChange(e)} />
         <input type="submit" value="submit" />
         </form>
     )
  }
 }
-export default ChallengesForm;
+export default EntryForm;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import EntryForm from './EntryForm';
 import DailyEntry from './DailyEntry';
 import Meter from './Meter';
 import MonthlyNotes from './MonthlyNotes';
@@ -23,9 +24,12 @@ class JournalContainer extends Component{
         })
     }
         render(){
+          const journal = this.state.journal;
             return(
+              <div>
+                  <EntryForm journal = {journal}/>
                   <DailyEntry />
-                  <JournalEntries journal={this.state.journalEntries} />
+              </div>
             )
     }
 }
