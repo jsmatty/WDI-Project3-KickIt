@@ -2,8 +2,8 @@ require("dotenv").config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const JournalController = require ('./controllers/journal.js');
-const EntryController = require ('./controllers/entry.js');
+const JournalController = require ('./controllers/journal');
+const EntryController = require ('./controllers/entry');
 const app = express();
 
 // const UserController = require ('./controllers/user');
@@ -27,13 +27,9 @@ app.use(express.static(__dirname + '/client/build/'));
 app.use(bodyParser.json());
 app.use('/api/journal', JournalController);
 app.use('/api/entry', EntryController);
-//app.use('/api/user', UserController);
-//app.use('/api/board', BoardController);
+// app.use('/api/user', UserController);
+// app.use('/api/board', BoardController);
 
-
-app.get('/', (req,res) => {
-  res.send('Hello world!')
-});
 
  app.get('/', (req,res) => {
     res.sendFile(__dirname + '/client/build/index.html')

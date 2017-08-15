@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-//import {Link} from 'react-router-dom';
-
+import { Link, Redirect } from "react-router-dom";
+import axios from 'axios';
+import {Button, Forms} from 'react-materialize';
 
 
 
@@ -38,5 +39,6 @@ _handleLogin = (event) => {
         );
     }
 }
+
 
 export default LogIn;

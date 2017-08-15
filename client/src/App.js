@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
+import axios from 'axios';
+import {BrowserRouter as Router, Link, Route, Redirect} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 
-import JournalContainer from './components/Journal/JournalContainer';
+
+import DailyEntries from './components/Journal/DailyEntry';
+import EntryForm from './components/Journal/EntryForm';
 import HomePage from './components/HomePage';
 import LogIn from './components/SignUp/LogIn';
 import CreateAccount from './components/SignUp/CreateAccount';
-
+import JournalContainer from './components/Journal/JournalContainer';
 class App extends Component {
   constructor() {
   super()
@@ -19,7 +22,18 @@ class App extends Component {
 }
 
   _handleLogin= function(username, password) {
-  axios.post("/api/login", this.{user.username}.password).then((res) => {
+  axios.post("/api/login",{username, password})
+    .then((res) => {
+
+      const newUser = {...this.state};
+
+      if(res.data.user){
+        newUser.username = res.data.username;
+        newUser.password = res.data.password;
+      }else{
+        newUser.loginError = res.data
+      }this.setState(newUser)
+        
     console.log(res.data);
   
    })
@@ -32,7 +46,9 @@ class App extends Component {
         <Route exact path ="/" component={HomePage} />
         <Route exact path ="/login" component={LogIn} />
         <Route exact path = "/createaccount" component={CreateAccount} />
-        <Route exact path="/journal" component={JournalContainer} />
+        <Route exact path="/dailyentries" component={DailyEntries} />
+        <Route exact path = "/entryform" component={EntryForm} />
+        <Route exact path = "/journal" component={JournalContainer} />
         </div>
       </Router>
     );
