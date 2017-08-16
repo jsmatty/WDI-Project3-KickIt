@@ -21,7 +21,7 @@ Journal.remove({}, (err) => console.log(err));
 
 const DailyOne = new Entry({
   content: "Got me thinking about the beginning of my recovery. The last few months of using. The first few months of being clean. The white knuckling, hardcore, mundane sweat and tears and boredom of it all.",
-  meter: 1
+  time: new Date()
 });
 const DailyTwo = new Entry({
   content: "Got me thinking about the beginning of my recovery. The last few months of using. The first few months of being clean. The white knuckling, hardcore, mundane sweat and tears and boredom of it all.",

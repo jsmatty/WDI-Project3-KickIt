@@ -16,7 +16,8 @@ router.get("/", (req,res) => {
 router.post("/:id", (req, res) => {
   const entry = new Entry({
     content: req.body.content,
-    meter: req.body.meter
+    time: new Date()
+    // meter: req.body.meter
   })
 
   Journal.findById(req.params.id).then( (journal) => {

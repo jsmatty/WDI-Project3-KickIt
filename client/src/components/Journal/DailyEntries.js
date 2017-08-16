@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import Meter from './Meter';
+import styled from 'styled-components'
 
+const SingleEntry = styled.div `
+background-color: blue;
+padding: 10px;
+`
 class DailyEntries extends Component{
   constructor(){
         super();
@@ -25,9 +29,11 @@ class DailyEntries extends Component{
             <div>
                 {this.state.entries.map( (entry, i) => {
                     return(
-                        <div key={i}>
+                        <SingleEntry key={i}>
                         {entry.content}
-                        </div>
+                        {entry.time}
+                        </SingleEntry>
+
                     )
                 })}
             </div>

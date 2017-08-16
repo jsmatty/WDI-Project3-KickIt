@@ -10,7 +10,8 @@ const boardSchema = mongoose.Schema({
 
 const entrySchema = mongoose.Schema({
   content: String,
-  meter: Number,
+  time: String
+  // meter: Number,
 })
 const journalSchema = mongoose.Schema ({
   dailyEntry: [entrySchema],
