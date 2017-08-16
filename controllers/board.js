@@ -1,6 +1,6 @@
 const express = require('express');
-const Board = require('../models/board');
-const MotivationalBoard = require('../models/motivationalBoard');
+const Board = require('../models/Board');
+//const MotivationalBoard = require('../models/MotivationalBoard');
 const router = express.Router();
 
 router.get("/", (req, res) => {

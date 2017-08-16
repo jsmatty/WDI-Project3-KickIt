@@ -1,7 +1,7 @@
 const express = require('express');
-const Entry= require('../models/entry');
+const Entry= require('../models/Entry');
 const router = express.Router();
-const Journal = require('../models/journal');
+const Journal = require('../models/Journal');
 
 router.get("/", (req,res) => {
  Entry.find({}).then((entries) => {
