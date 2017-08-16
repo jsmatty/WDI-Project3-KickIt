@@ -38,7 +38,7 @@ _handleLogin = (event) => {
                     <div>
                         
         <Link to="/journal"><button>Submit</button></Link>
-        <Link to="/createaccount"><button>Sign-up Here</button></Link>
+        <Link to="/createaccount"><button>Create Account</button></Link>
                     </div>
                 </form>
                 {/*<p>Ready to join our Community?<Link style={Link} to="/create-account">Sign Up Here!</Link></p>*/}
