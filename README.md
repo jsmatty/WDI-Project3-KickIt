@@ -4,7 +4,7 @@ addiction self-help journal
 LINKS:
 ------
 
-HEROKU: link to page:
+HEROKU: link to page: https://kickit-project3.herokuapp.com/
 
 TRELLO: link to page: https://trello.com/b/XKMaCgoy/wdi-project-3-kick-itaddiction-help
 
