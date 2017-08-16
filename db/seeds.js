@@ -3,7 +3,7 @@ require("dotenv").config();
 //import mongoose//
 var mongoose = require('mongoose');
 //tell mongoose to connect to the env//
-mongoose.connect('mongodb://localhost/kick-it');
+mongoose.connect(process.env.MONGODB_URI);
 //import models//
 var Board = require('../models/Board');
 var Entry = require('../models/Entry');
