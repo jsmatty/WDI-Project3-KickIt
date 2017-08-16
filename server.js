@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const JournalController = require ('./controllers/journal');
 const EntryController = require ('./controllers/entry');
+const UsersController = require ('./controllers/user');
+
 const app = express();
 
 // const UserController = require ('./controllers/user');
@@ -27,6 +29,7 @@ app.use(express.static(__dirname + '/client/build/'));
 app.use(bodyParser.json());
 app.use('/api/journal', JournalController);
 app.use('/api/entry', EntryController);
+app.use('/api/users', UsersController);
 // app.use('/api/user', UserController);
 // app.use('/api/board', BoardController);
 

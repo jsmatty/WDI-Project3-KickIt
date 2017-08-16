@@ -11,6 +11,7 @@ import HomePage from './components/HomePage';
 import LogIn from './components/SignUp/LogIn';
 import CreateAccount from './components/SignUp/CreateAccount';
 import JournalContainer from './components/Journal/JournalContainer';
+
 class App extends Component {
   constructor() {
   super()

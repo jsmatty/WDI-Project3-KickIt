@@ -1,5 +1,4 @@
 const express = require('express');
-const SignUp = require('../models/SignUp');
 const User = require('../models/User');
 const router = express.Router();
 
@@ -10,6 +9,22 @@ router.get("/", (req,res) => {
     console.log('HELLO?')
   });
 });
+
+router.post('/', (req, res) => {
+  const newUser = new User({
+    name: req.body.name,
+    email: req.body.email,
+    username: req.body.username,
+    password: req.body.password,
+    age: req.body.age,
+    addiction: req.body.addiction
+  })
+  newUser.save().then((user) => {
+      console.log("Success!");
+      res.json(user);
+    }).catch( (err) => console.log(err))
+  })
+
 
 router.put("/login", (req, res) => {
   //save username and password

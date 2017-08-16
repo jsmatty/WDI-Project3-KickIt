@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Splash from 'react-splash';
 import axios from 'axios';
 
+import Login from './SignUp/LogIn'
+
 
 class HomePage extends Component {
   render() {
@@ -14,8 +16,7 @@ class HomePage extends Component {
   style={{ height: '70vh' }}
 />
      
-        <Link to="/login"><button>Log in</button></Link>
-
+      <Login />
         W E L C O M E
 
         <Link to="/createaccount">Sign up</Link>

@@ -1,90 +1,87 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import axios from 'axios';
 
 class CreateAccount extends Component {
+constructor(){
+  super();
+// set initial state to include our input fields 'name' and 'description'
+  this.state={
+    name: ' ',
+    email: ' ',
+    username: ' ',
+    password: ' ',
+    age: ' ',
+    addiction: ' '
+  }
 
-_handleChangeFirstName = (e) => {
-		e.preventDefault();
-		const firstName = e.target.value;
-		this.setState({firstName});
-	};
+// binding these functions to this specific Component
+this.handleChange = this.handleChange.bind(this);
+this.handleSubmit = this.handleSubmit.bind(this);
+ }
 
-	_handleChangeEmail = (e) => {
-		e.preventDefault();
-		const email = e.target.value;
-		this.setState({email});
+// this func is called onChange when our input fields are filled
+handleChange(event){
+  // set variables for our elements, their name attributes, and their values
+  const target = event.target;
+  const name = target.name;
+  const value = target.value;
+
+  // create an object to hold current state of the updated keys and values
+  const newState = {
+    // computed property syntax from ES6:
+    // this updates every state key and value using the 'name' attribute of our input elements
+    //and the value of those individual elements
+    [name]: value
   };
-	_handleChangeUserName = (e) => {
-		e.preventDefault();
-		const userName = e.target.value;
-		this.setState({userName});
-	};
-  	_handleChangePassword = (e) => {
-		e.preventDefault();
-		const password = e.target.value;
-		this.setState({password});
-	};
-	_handleChangeAge = (e) => {
-		e.preventDefault();
-		const age = e.target.value;
-		this.setState({age});
-	};
-  	_handleChangeAddiction = (e) => {
-		e.preventDefault();
-		const addiction = e.target.value;
-		this.setState({addiction});
-	};
+// Set the state with our newState object
+    this.setState(newState);
 
-  _handleSubmit = (e) => {
-		e.preventDefault();
-		console.log(this.state);
-		console.log(e);
-		axios.post("/api/user", this.state).then((res) => {
-			const newState = {...this.state};
-			newState.firstName = res.data.firstName;
-			newState.email = res.data.email;
-			newState.username = res.data.username;
-			newState.password = res.data.password;
-			newState.age = res.data.age;
-			newState.addiction = res.data.addiction;
-      this.setState(newState);
-			console.log(this.state);
-		})
-		.catch(err => console.log(err));
-	};
 
-  render() {
-		return (
-			<div>
-				<h1>Create Account</h1>
-				<form>
-					<div>
-						<input onChange={this._handleChangeFirstName} type="text" name="firstName" placeholder="First Name"/>
-          </div>
-          <div>  
-						<input onChange={this._handleChangeEmail} type="text" name="email" placeholder="Email"/>
-					</div>
-					<div>
-						<input onChange={this._handleChangeUsername} type="text" name="username" placeholder="Username"/>
-					</div>
-          <div>	
-            <input onChange={this._handleChangePassword} type="text" name="password" placeholder="Password"/>
-					</div>
-					<div>
-					  <input onChange={this._handleChangeAge} type="text" name="age" placeholder="MM/DD/YYYY"/>
-          </div>
-          <div>  
-						<input onChange={this._handleChangeAddiction} type="text" name="addiction" placeholder="Addiction"/>
-					</div>
-          <div>
-          	<input onClick={this._handleSubmit} type="submit"/>
-          </div>
+// Testing handleChange function
+  // console.log(Object.keys(newState));
+  // console.dir(newState)
+  // console.log('State - name: ' + this.state.name);
+  // console.log('Future State - name: ' + newState.name);
+  // console.log('State - desc: ' + this.state.description);
+  // console.log('Future State - desc: ' + newState.description);
+}
+
+// This function will handle what happens when submit is fired.
+// This where axios will hit the POST route of our API
+
+handleSubmit(event){
+    axios.post('/api/users', {
+      name: this.state.name,
+			email: this.state.email,
+			username: this.state.username,
+			password: this.state.password,
+			age: this.state.age,
+			addiction: this.state.addiction
+    })
+    // alert("helloos" + this.state.name);
+    // alert(this.state.description)
+}
+
+render(){
+    return(
+        <form onSubmit = {this.handleSubmit}>
+        <label>Name</label>
+        <input type="text" name ="name" value={this.state.name} onChange={(e) => this.handleChange(e)} />
+        <label>Email</label>
+        <input type="text" name ="email" value={this.state.email} onChange={(e) => this.handleChange(e)} />
+        <label>Username</label>
+        <input type="text" name ="username" value={this.state.username} onChange={(e) => this.handleChange(e)} />
+				<label>Password</label>
+        <input type="text" name ="password" value={this.state.password} onChange={(e) => this.handleChange(e)} />
+				<label>Age</label>
+        <input type="text" name ="age" value={this.state.age} onChange={(e) => this.handleChange(e)} />
+				<label>Addiction</label>
+        <input type="text" name ="addiction" value={this.state.addiction} onChange={(e) => this.handleChange(e)} />
+        <input type="submit" value="submit" />
         </form>
-      </div>
-			
-		)
-	};
-}		
+    )
+ }
+}
           
 export default CreateAccount;

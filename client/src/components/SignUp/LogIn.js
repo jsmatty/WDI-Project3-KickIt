@@ -31,7 +31,8 @@ _handleLogin = (event) => {
                         <input type="text" name="password" placeholder="Password"/>
                     </div>
                     <div>
-                        <button>Submit</button>
+                        
+        <Link to="/journal"><button>Submit</button></Link>
                     </div>
                 </form>
                 {/*<p>Ready to join our Community?<Link style={Link} to="/create-account">Sign Up Here!</Link></p>*/}

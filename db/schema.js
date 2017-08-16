@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema ({
   username: String,
   password: String,
   age: Number,
-  addiction: String,
+  addiction: String
 });
 // Use native promises
 //mongoose.Promise = global.Promise;
