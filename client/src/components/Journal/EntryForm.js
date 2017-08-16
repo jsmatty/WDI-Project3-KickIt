@@ -47,7 +47,7 @@ render(){
     return(
         // <EntryFormStyle >
         <EntryFormStyle onSubmit={this.handleSubmit}>
-          <h4>Content</h4>
+          <h4>My Daily Journal</h4>
           <br/>
           <br/>
           <input type="text" name ="content" value={this.state.content} 
@@ -55,7 +55,7 @@ render(){
           {/*<label>Meter</label>
           <input type="radio" name ="meter" value={this.state.meter} 
             onChange={(e) => this.handleChange(e)} />*/}
-          <button type="submit" value="submit">Submit</button>
+          <button type="submit" value="submit">Add</button>
         </EntryFormStyle>
         // </EntryFormStyle>
         // </div>

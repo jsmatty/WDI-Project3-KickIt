@@ -3,13 +3,14 @@ import axios from 'axios';
 import styled from 'styled-components'
 
 const SingleEntry = styled.div `
-background-color: green;
-margin: 10px;
-border-radius: 5px;
-border: 5px solid pink;
-padding: 10px;
-color: white;
-font-size: 15px;
+    background-color: #afbfff;
+    margin: 10px;
+    border-radius: 5px;
+    border: 5px solid white;
+    padding: 10px;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
 `
 class DailyEntries extends Component{
   constructor(){
@@ -36,6 +37,8 @@ class DailyEntries extends Component{
                     return(
                         <SingleEntry key={i}>
                         {entry.content}
+                        <br/>
+                        <br/>
                         {entry.time}
                         </SingleEntry>
 
