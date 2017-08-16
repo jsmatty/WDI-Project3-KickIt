@@ -3,8 +3,13 @@ import axios from 'axios';
 import styled from 'styled-components'
 
 const SingleEntry = styled.div `
-background-color: blue;
+background-color: green;
+margin: 10px;
+border-radius: 5px;
+border: 5px solid pink;
 padding: 10px;
+color: white;
+font-size: 15px;
 `
 class DailyEntries extends Component{
   constructor(){

@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {BrowserRouter as Router, Link, Route, Redirect} from 'react-router-dom';
+import styled from 'styled-components'
 
+
+const EntryFormStyle = styled.div `
+width: 400px;
+height: 210px;
+display: center;
+margin-bottom: 50px;
+`
 
 class EntryForm extends Component {
   constructor(props){
     super(props);
     this.state = {
       content : "",
-      meter : ""
+      //meter : ""
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -37,19 +45,21 @@ handleSubmit(event){
 
 render(){
     return(
-        <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>Content</label>
+        // <EntryFormStyle >
+        <EntryFormStyle onSubmit={this.handleSubmit}>
+          <h4>Content</h4>
+          <br/>
+          <br/>
           <input type="text" name ="content" value={this.state.content} 
             onChange={(e) => this.handleChange(e)} />
-          <label>Meter</label>
-          <input type="text" name ="meter" value={this.state.meter} 
-            onChange={(e) => this.handleChange(e)} />
+          {/*<label>Meter</label>
+          <input type="radio" name ="meter" value={this.state.meter} 
+            onChange={(e) => this.handleChange(e)} />*/}
           <button type="submit" value="submit">Submit</button>
-        </form>
-        <div>
-        </div>
-        </div>
+        </EntryFormStyle>
+        // </EntryFormStyle>
+        // </div>
+        // </div>
     )
  }
 }

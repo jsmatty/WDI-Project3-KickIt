@@ -13,5 +13,5 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   const Thumb = new Board ({
     content: req.body.content,
-    meter: req.body.meter
+    //meter: req.body.meter
   });

@@ -2,8 +2,14 @@ import React, { Component } from "react";
 import axios from 'axios';
 import EntryForm from './EntryForm';
 import DailyEntries from './DailyEntries';
-import Meter from './Meter';
+// import Meter from './Meter';
 import WeeklyGoal from './WeeklyGoal';
+import styled from 'styled-components';
+
+const ContainerStyle = styled.div`
+background-color: #f4eee1;
+
+`
 
 class JournalContainer extends Component{
   constructor(props){
@@ -37,10 +43,13 @@ class JournalContainer extends Component{
 }
         render(){
             return(
-              <div>
+                
+              <ContainerStyle>
+                  <div>
                   <EntryForm journal={this.state.journal}/>
                   <DailyEntries />
-              </div>
+                  </div>
+              </ContainerStyle>
             )
     }
 }

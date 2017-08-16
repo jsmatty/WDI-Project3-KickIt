@@ -6,6 +6,7 @@ import {Button, Forms} from 'react-materialize';
 
 
 
+
 class LogIn extends Component {
 _handleLogin = (event) => {
     event.preventDefault();
@@ -20,6 +21,7 @@ _handleLogin = (event) => {
     render() {
         return (
             <div>
+           
                 <h1>Log In:</h1>
                 <form onSubmit={this._handleLogin}>
                     <div>
@@ -29,10 +31,14 @@ _handleLogin = (event) => {
                     <div>
                         <label htmlFor="password"></label>
                         <input type="text" name="password" placeholder="Password"/>
+                        
+                  
                     </div>
+
                     <div>
                         
         <Link to="/journal"><button>Submit</button></Link>
+        <Link to="/createaccount"><button>Sign-up Here</button></Link>
                     </div>
                 </form>
                 {/*<p>Ready to join our Community?<Link style={Link} to="/create-account">Sign Up Here!</Link></p>*/}
