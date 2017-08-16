@@ -13,7 +13,7 @@ const entrySchema = mongoose.Schema({
   meter: Number,
 })
 const journalSchema = mongoose.Schema ({
-  dailyEntry: {entrySchema},
+  dailyEntry: [entrySchema],
   weeklyGoal: String,
   monthlyAccomplishments: String
 });

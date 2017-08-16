@@ -1,7 +1,7 @@
 const express = require('express');
 const Entry= require('../models/entry');
 const router = express.Router();
-
+const Journal = require('../models/journal');
 
 router.get("/", (req,res) => {
  Entry.find({}).then((entries) => {
@@ -11,14 +11,17 @@ router.get("/", (req,res) => {
 });
 
 
-router.post("/", (req, res) => {
+router.post("/:id", (req, res) => {
   const entry = new Entry({
     content: req.body.content,
     meter: req.body.meter
   });
-entry.save().then((entry) => {
-    console.log("Success!");
-    res.json(entry);
+  Journal.findById(req.params.id).then( (journal) => {
+    journal.dailyEntry.push(entry);
+    journal.save().then((entry) => {
+      console.log("Success!");
+      res.json(entry);
+  }).catch( (err) => console.log(err))
   });
 })
 

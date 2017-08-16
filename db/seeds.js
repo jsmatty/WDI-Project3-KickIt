@@ -8,14 +8,16 @@ mongoose.connect('mongodb://localhost/kick-it');
 var Board = require('../models/board');
 var Entry = require('../models/entry');
 var User = require('../models/user');
+var Journal = require('../models/journal')
 //use native promises//
 
 mongoose.Promise = global.Promise;
 
 //create//
-// Board.remove({}, (err) => console.log(err));
+Board.remove({}, (err) => console.log(err));
 Entry.remove({}, (err) => console.log(err));
-// User.remove({}, (err) => console.log(err));
+User.remove({}, (err) => console.log(err));
+Journal.remove({}, (err) => console.log(err));
 
 const DailyOne = new Entry({
   content: "Got me thinking about the beginning of my recovery. The last few months of using. The first few months of being clean. The white knuckling, hardcore, mundane sweat and tears and boredom of it all.",
@@ -39,12 +41,19 @@ const DailyFive = new Entry({
   meter: 5
 });
 
+const JournalOne = new Journal({
+  dailyEntry: [DailyOne, DailyTwo, DailyThree, DailyFour, DailyFive],
+  weeklyGoal: "Make lots of entries",
+  monthlyAccomplishments: "Do things"
+})
+
 //save:  ---.save().then(() =>   game.save().then(() => //
-DailyOne.save().then(() => console.log("Board Saved!"))
-DailyTwo.save().then(() => console.log("Board Saved!"))
-DailyThree.save().then(() => console.log("Board Saved!"))
-DailyFour.save().then(() => console.log("Board Saved!"))
-DailyFive.save().then(() => console.log("Board Saved!"))
+// DailyOne.save().then(() => console.log("Board Saved!"))
+// DailyTwo.save().then(() => console.log("Board Saved!"))
+// DailyThree.save().then(() => console.log("Board Saved!"))
+// DailyFour.save().then(() => console.log("Board Saved!"))
+// DailyFive.save().then(() => console.log("Board Saved!"))
+JournalOne.save().then(() => console.log('Journal One saved'));
 // Entrysave().then(() => console.log("EntrySaveFour!"))
 // User.save().then(() => console.log("User Saved!"))
 

@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import './App.css';
 
 
-import DailyEntries from './components/Journal/DailyEntry';
+import DailyEntries from './components/Journal/DailyEntries';
 import EntryForm from './components/Journal/EntryForm';
 import HomePage from './components/HomePage';
 import LogIn from './components/SignUp/LogIn';
