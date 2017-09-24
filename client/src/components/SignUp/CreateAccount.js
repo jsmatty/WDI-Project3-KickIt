@@ -12,7 +12,8 @@ constructor(){
     username: ' ',
     password: ' ',
     age: ' ',
-    addiction: ' '
+    addiction: ' ',
+    redirect: false
   }
 
 // binding these functions to this specific Component
@@ -51,19 +52,31 @@ handleChange(event){
 // This where axios will hit the POST route of our API
 
 handleSubmit(event){
+  event.preventDefault();
     axios.post('/api/users', {
       name: this.state.name,
 			email: this.state.email,
 			username: this.state.username,
 			password: this.state.password,
 			age: this.state.age,
-			addiction: this.state.addiction
+			addiction: this.state.addiction,
+     
+    })
+    .then((res) => {
+      this.setState({
+        redirect: true
+      })
     })
     // alert("helloos" + this.state.name);
     // alert(this.state.description)
 }
 
 render(){
+    if(this.state.redirect){
+      console.log(this.state.redirect)
+    return <Redirect to="/" />
+  }
+
     return(
         <form onSubmit = {this.handleSubmit}>
         <label>Name</label>

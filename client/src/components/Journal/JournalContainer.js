@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import EntryForm from './EntryForm';
 import DailyEntries from './DailyEntries';
+import EntryShow from './EntryShow';
 // import Meter from './Meter';
 import WeeklyGoal from './WeeklyGoal';
 import styled from 'styled-components';
@@ -24,7 +25,7 @@ class JournalContainer extends Component{
     componentWillMount(){
         axios.get('/api/journal').then((res) => {
             const entries = res.data;
-            console.log(res.data[0]);
+            // console.log(res.data);
             this.setState({
                 journal: res.data[0]
             })
@@ -42,12 +43,14 @@ class JournalContainer extends Component{
         this.setState(newState);
 }
         render(){
+            // console.log(this.state.journal[0])
             return(
                 
               <ContainerStyle>
                   <div>
                   <EntryForm journal={this.state.journal}/>
-                  <DailyEntries />
+
+                  <DailyEntries journal={this.state.journal}/>
                   </div>
               </ContainerStyle>
             )

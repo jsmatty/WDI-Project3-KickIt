@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { Link } from 'react-router-dom'
 
 const SingleEntry = styled.div `
     background-color: #afbfff;
@@ -16,19 +17,28 @@ class DailyEntries extends Component{
   constructor(){
         super();
         this.state = {
-            entries: [],
+            entries: []
         }
   }
 
     // fetching data with axios 
     componentWillMount(){
-        axios.get('/api/journal').then((res) => {
-            console.log(res.data);
+        // console.log(this.props.journal[0])
+        const res = axios.get('/api/journal').then((res) => {
+            console.log(res.data[0]);
             this.setState({
                 entries: res.data[0].dailyEntry
             })
+            // console.log(this.state.dailyEntries);
         })
     }
+
+    deleteThis(){
+        const id = this.state.entries._id
+        console.log(id);
+       
+    }
+
 
     render() {
         return(
@@ -40,6 +50,8 @@ class DailyEntries extends Component{
                         <br/>
                         <br/>
                         {entry.time}
+                        <Link to={`/entry/${entry._id}`}><button>Edit</button></Link>
+                        <button onClick={this.deleteThis}>Delete</button>
                         </SingleEntry>
 
                     )

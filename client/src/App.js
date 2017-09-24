@@ -3,8 +3,8 @@ import axios from 'axios';
 import {BrowserRouter as Router, Link, Route, Redirect} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import {Button, Forms, Navbar} from 'react-materialize'
-
+import {Button, Forms, Navbar} from 'react-materialize';
+import EntryShow from './components/Journal/EntryShow';
 import DailyEntries from './components/Journal/DailyEntries';
 import EntryForm from './components/Journal/EntryForm';
 import HomePage from './components/HomePage';
@@ -53,6 +53,7 @@ class App extends Component {
         <Route exact path="/dailyentries" component={DailyEntries} />
         <Route exact path = "/entryform" component={EntryForm} />
         <Route exact path = "/journal" component={JournalContainer} />
+        <Route exact path = "/entry/:id" component={EntryShow} />
         </div>
       </Router>
       
