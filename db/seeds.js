@@ -5,10 +5,10 @@ var mongoose = require('mongoose');
 //tell mongoose to connect to the env//
 mongoose.connect(process.env.MONGODB_URI);
 //import models//
-var Board = require('../models/Board');
-var Entry = require('../models/Entry');
-var User = require('../models/User');
-var Journal = require('../models/Journal')
+var Board = require('../models/board');
+var Entry = require('../models/entry');
+var User = require('../models/user');
+var Journal = require('../models/journal')
 //use native promises//
 
 mongoose.Promise = global.Promise;
