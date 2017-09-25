@@ -14,7 +14,8 @@ class LogIn extends Component {
             users: [],
             currentUser: [],
             username: '',
-            password: ''
+            password: '',
+            redirect: false
         }
 
     }
@@ -42,29 +43,29 @@ class LogIn extends Component {
 
 _handleLogin = (event) => {
     event.preventDefault();
-    let currentUser = [];
+    let currentUser = []
+
     console.log('Login function')
     for(let i=0; i <= this.state.users.length; i++ ){
         const usersArray = this.state.users[i];
         if(usersArray.username === this.state.username && this.state.users[i].password === this.state.password){
-            console.log(usersArray)
-            this.setState({
-                currentUser: usersArray
-            })
-            console.log(this.state.currentUser)
-            console.log('LOGGED IN');
-            alert('Logged in');
-            return currentUser
+            currentUser.push(usersArray);
+            alert('Logged In')
+            break
         }
-
-        // console.log('Failed');
     }
-     console.log(this.state.currentUser)
-
+    this.setState({
+                 currentUser: currentUser,
+                 redirect: true
+                })
 }
 
     render() {
-        return (
+   
+if(this.state.redirect){
+      console.log(this.state.redirect)
+    return <Redirect to={`/user/${this.state.currentUser[0]._id}`} />
+  }        return (
             <div>
            
                 <h1>Log In:</h1>
@@ -77,8 +78,6 @@ _handleLogin = (event) => {
                     <div>
                         <label htmlFor="password"></label>
                         <input type="text" name="password" placeholder="Password" value={this.state.password} onChange={(e) => this.handleChange(e)}/>
-                        
-                  
                     </div>
 
                     <div>

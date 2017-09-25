@@ -44,6 +44,7 @@ handleSubmit(event){
 }
 
 render(){
+  
     return(
         // <EntryFormStyle >
         // <EntryFormStyle onSubmit={this.handleSubmit}>
