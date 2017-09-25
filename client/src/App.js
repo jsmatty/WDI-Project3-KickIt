@@ -27,10 +27,10 @@ class App extends Component {
     }
 
 componentWillMount(){
-  axios.get('/api/user').then((res)=>{
-    console.log(res.data);
+  axios.get('/api/users').then((res)=>{
+    // console.log(res.data);
     this.setState({users: res.data})
-    console.log(this.state.users)
+    // console.log(this.state.users)
   })
 }
 
@@ -75,9 +75,14 @@ _logInAndPassNewUser = (user) => {
         <Navbar />
       <Router>
         <div>
-        <Route exact path ="/" component={HomePage} />
+        <Route exact path ="/"  render={routeProps => 
+          <HomePage {...routeProps}
+            users={this.state.users}
+            loggedIn={this.state.loggedIn}
+            updateUsers={this._updateUsers}
+          />}/>
 
-        <Route exact path ="/login" component={LogIn} render={routeProps => 
+        <Route exact path ="/login"  render={routeProps => 
           <LogIn {...routeProps}
             users={this.state.user}
             loggedIn={this.state.loggedIn}
@@ -86,7 +91,7 @@ _logInAndPassNewUser = (user) => {
            
         <Route exact path = "/createaccount" component={CreateAccount} />
 
-        <Route exact path="/dailyentries" component={DailyEntries} render={routeProps => 
+        <Route exact path="/dailyentries"  render={routeProps => 
           <DailyEntries {...routeProps}
             login={this._logInAndPassNewUser}
           
@@ -98,10 +103,10 @@ _logInAndPassNewUser = (user) => {
 
         <Route exact path = "/entry/:id" component={EntryShow} />
 
-        <Route exact path = "/user/:id" component={UserShow} render={routeProps =>
+        <Route exact path = "/user/:userId"  render={routeProps =>
           <UserShow {...routeProps}
           users={this.state.user}
-          _updateUsers={this._updateUsers}
+          updateUsers={this.state._updateUsers}
           logOut={this._logOut}
           />} />
         </div>

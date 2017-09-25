@@ -24,7 +24,8 @@ class DailyEntries extends Component{
 
     // fetching data with axios 
     componentWillMount(){
-        axios.get(`/api/user/${this.props.match.params.userId}`)
+        console.log(this.props)
+        axios.get(`/api/user/`)
         .then((res) => {
             this.setState({
                 user: res.data

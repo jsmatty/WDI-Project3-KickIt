@@ -58,7 +58,7 @@ router.put('/:userId', (req,res) => {
 })
 
 //Delete User
-router.get('/:userId/delete', (req,res) =>{
+router.delete('/:userId', (req,res) =>{
     User.findByIdAndRemove(req.params.userId).then((user) => {
         console.log('success');
         res.send(200)

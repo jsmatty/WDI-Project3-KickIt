@@ -19,6 +19,7 @@ class NavBar extends Component {
         adfasdfasdf
         <NavBarStyle class = "nav-wrapper">
           <button><Link to= "/" class= "brand-logo">Kick-It</Link></button>
+          <button><Link to= "/user/:userId">Profile</Link></button>
         </NavBarStyle>
       </nav> 
       
