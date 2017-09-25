@@ -20,10 +20,11 @@
         "start": "node server.js",
         "dev": "concurrently \"nodemon server.js\" \"cd ./client  && yarn start \" ",
         "test": "echo \"Error: no test specified\" && exit 1",
+        //Will install the client packages and build the minified UI in Heroku.
         "postinstall": "cd client && npm install && npm run build"
     },
     "engines": {
-        "node": "8.2.1"
+        "node": "8.1.2"
     },
     "repository": {
         "type": "git",
