@@ -17,12 +17,20 @@ class DailyEntries extends Component{
   constructor(){
         super();
         this.state = {
-            entries: []
+            entries: [],
+            user:[]
         }
   }
 
     // fetching data with axios 
     componentWillMount(){
+        axios.get(`/api/user/${this.props.match.params.userId}`)
+        .then((res) => {
+            this.setState({
+                user: res.data
+            })
+            this.props.setLoggedInUser(res.data)
+        })
         // console.log(this.props.journal[0])
         const res = axios.get('/api/journal').then((res) => {
             console.log(res.data[0]);

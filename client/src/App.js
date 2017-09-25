@@ -12,6 +12,8 @@ import LogIn from './components/SignUp/LogIn';
 import CreateAccount from './components/SignUp/CreateAccount';
 import JournalContainer from './components/Journal/JournalContainer';
 import NavBar from './components/NavBar';
+import UserShow from './components/User/UserShow'
+
 
 class App extends Component {
     constructor(){
@@ -74,12 +76,34 @@ _logInAndPassNewUser = (user) => {
       <Router>
         <div>
         <Route exact path ="/" component={HomePage} />
-        <Route exact path ="/login" component={LogIn} />
+
+        <Route exact path ="/login" component={LogIn} render={routeProps => 
+          <LogIn {...routeProps}
+            users={this.state.user}
+            loggedIn={this.state.loggedIn}
+            _updateUsers={this._updateUsers}
+            />} />
+           
         <Route exact path = "/createaccount" component={CreateAccount} />
-        <Route exact path="/dailyentries" component={DailyEntries} />
+
+        <Route exact path="/dailyentries" component={DailyEntries} render={routeProps => 
+          <DailyEntries {...routeProps}
+            login={this._logInAndPassNewUser}
+          
+          />} />
+
         <Route exact path = "/entryform" component={EntryForm} />
+
         <Route exact path = "/journal" component={JournalContainer} />
+
         <Route exact path = "/entry/:id" component={EntryShow} />
+
+        <Route exact path = "/user/:id" component={UserShow} render={routeProps =>
+          <UserShow {...routeProps}
+          users={this.state.user}
+          _updateUsers={this._updateUsers}
+          logOut={this._logOut}
+          />} />
         </div>
       </Router>
       
