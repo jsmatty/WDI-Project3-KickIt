@@ -27,90 +27,21 @@ class App extends Component {
         }
     }
 
-componentWillMount(){
-  axios.get('/api/users').then((res)=>{
-    // console.log(res.data);
-    this.setState({users: res.data})
-    console.log('App.js ' + this.state.users)
-  })
-}
-
-_updateUsers = (data) => {
-
-  this.setState({users: data})
-}
-
-
-_logIn = () => {
-
-    this.setState({
-      loggedIn: true
-      
-    })
-}
-
-_logOut = () => {
-  
-  this.setState({loggedIn: false});
-    
-}
-
-_setLoggedInUser = (user) => {
-
-  this.setState({
-    user: user
-  })
-}
-
-_logInAndPassNewUser = (user) => {
-
-  this.setState({
-    loggedIn:true,
-    user: user
-  })
-  
-}
   render() {
     return (
       <div>
-        <NavBar users={this.state.user}
-            loggedIn={this.state.loggedIn}/>
+        <NavBar />
       <Router>
         <div>
-        <Route exact path ="/"  render={routeProps => 
-          <HomePage {...routeProps}
-            users={this.state.users}
-            loggedIn={this.state.loggedIn}
-            updateUsers={this._updateUsers}
-          />}/>
-
-        <Route exact path ="/login"  render={routeProps => 
-          <LogIn {...routeProps}
-            users={this.state.user}
-            loggedIn={this.state.loggedIn}
-            _updateUsers={this._updateUsers}
-            />} />
-           
+        <Route exact path ="/" component={HomePage} />
+        <Route exact path ="/login" component={LogIn} />
         <Route exact path = "/createaccount" component={CreateAccount} />
-
-        <Route exact path="/dailyentries"  render={routeProps => 
-          <DailyEntries {...routeProps}
-            login={this._logInAndPassNewUser}
-          
-          />} />
-
+        <Route exact path="/dailyentries" component={DailyEntries}  />
         <Route exact path = "/entryform" component={EntryForm} />
-
         <Route exact path = "/journal" component={JournalContainer} />
-
         <Route exact path = "/entry/:id" component={EntryShow} />
         <Route exact path = '/user/:userId/edit' component={EditUserPage} />
-        <Route exact path = "/user/:userId"  render={routeProps =>
-          <UserShow {...routeProps}
-          users={this.state.user}
-          updateUsers={this.state._updateUsers}
-          logOut={this._logOut}
-          />} />
+        <Route exact path = "/user/:userId" component={UserShow}  />
         </div>
       </Router>
       

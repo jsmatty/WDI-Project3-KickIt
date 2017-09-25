@@ -24,30 +24,13 @@ class DailyEntries extends Component{
 
     // fetching data with axios 
     componentWillMount(){
-        console.log(this.props)
-        axios.get(`/api/user/`)
-        .then((res) => {
-            this.setState({
-                user: res.data
-            })
-            this.props.setLoggedInUser(res.data)
-        })
-        // console.log(this.props.journal[0])
         const res = axios.get('/api/journal').then((res) => {
             console.log(res.data[0]);
             this.setState({
                 entries: res.data[0].dailyEntry
             })
-            // console.log(this.state.dailyEntries);
         })
     }
-
-    deleteThis(){
-        
-        // axios.delete(`/api/entry/${entri}`)
-       
-    }
-
 
     render() {
         return(

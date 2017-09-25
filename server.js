@@ -8,11 +8,9 @@ const UsersController = require ('./controllers/user');
 
 const app = express();
 
-// const UserController = require ('./controllers/user');
-// const BoardController = require ('./controllers/board');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI); //mongodb://localhost/fullstack-jeopardy
+mongoose.connect(process.env.MONGODB_URI); 
 
 
 const connection = mongoose.connection;
@@ -20,7 +18,6 @@ connection.on('connected', () => {
   console.log('Mongoose Connected Successfully');    
 }); 
 
-// If the connection throws an error
 connection.on('error', (err) => {  
   console.log('Mongoose default connection error: ' + err);
 }); 
@@ -30,8 +27,6 @@ app.use(bodyParser.json());
 app.use('/api/journal', JournalController);
 app.use('/api/entry', EntryController);
 app.use('/api/users', UsersController);
-// app.use('/api/user', UserController);
-// app.use('/api/board', BoardController);
 
 
  app.get('/', (req,res) => {

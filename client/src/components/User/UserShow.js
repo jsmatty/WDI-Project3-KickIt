@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {Button, Forms, Navbar} from 'react-materialize';
 import styled from 'styled-components';
 
@@ -16,6 +16,7 @@ class UserShow extends Component {
       password: '',
       age: '',
       addiction: '',
+      redirect: false
     }
   }
 
@@ -41,11 +42,22 @@ class UserShow extends Component {
 
     }
 
- deleteThis(){  
-        // axios.delete(`/api/users/${this.props.match.params.userId}`)
-       
-    }  
+
+     deleteUser = () => {
+        axios.delete(`/api/users/${this.props.match.params.userId}`).then((res) => {
+            console.log('user deleted!');
+            
+        }).catch((err) => {
+            console.log(err);
+        })
+        this.setState({ redirect: true });
+     }
+
+ 
   render() {
+    if(this.state.redirect){
+      return <Redirect to={`/`} />
+    }
     console.log(this.props)
     return (
       <div>
@@ -56,8 +68,8 @@ class UserShow extends Component {
           <h3>Age: {this.state.age}</h3>
           <h3>Addiction: {this.state.addiction}</h3>
         </div>
-        <Link to={`/user/${this.props.match.params.userId}/edit`}><button>EDITt</button></Link>
-        <button onClick={this.deleteThis}>DELETE ACCOUNT</button>
+        <Link to={`/user/${this.props.match.params.userId}/edit`}><button>EDIT</button></Link>
+        <button onClick={this.deleteUser}>DELETE ACCOUNT</button>
       </div>
     );
   }

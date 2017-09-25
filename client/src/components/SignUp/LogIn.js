@@ -31,13 +31,11 @@ class LogIn extends Component {
     }
 
     handleChange(event){
-  // set variables for our elements, their name attributes, and their values
   console.log (event.target.value);
   const attributeName = event.target.name;
   const  attributeValue = event.target.value;
   const newState = {...this.state}
   newState[attributeName] = attributeValue;
-// Set the state with our newState object
     this.setState(newState);
 }
 
@@ -82,11 +80,9 @@ if(this.state.redirect){
 
                     <div>
                         <input type="submit" value='Login'/>
-        {/*<Link to="/journal"><button>Submit</button></Link>*/}
         <Link to="/createaccount"><button>Create Account</button></Link>
                     </div>
                 </form>
-                {/*<p>Ready to join our Community?<Link style={Link} to="/create-account">Sign Up Here!</Link></p>*/}
             </div>
         );
     }

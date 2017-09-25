@@ -4,14 +4,12 @@ const router = express.Router({mergeParams: true});
 
 
 
-//Get List of Users
 router.get('/', (req,res) => {
     User.find().then((Users) => {
         res.json(Users)
     }).catch(err => console.log(err))
 });
 
-//User's individual show page
 router.get('/:userId', (req,res)=> {
     User.findById(req.params.userId).then((user) => {
         res.json(user);
@@ -20,7 +18,6 @@ router.get('/:userId', (req,res)=> {
 
 
 
-//Create a new user
 router.post('/', (req,res) => {
     const name = req.body.name;
     const email = req.body.email;
@@ -47,7 +44,6 @@ router.post('/', (req,res) => {
 
 
 
-//Edit User
 router.patch('/:userId', (req,res) => {
     User.findByIdAndUpdate(req.body._id, req.body).then((user)=>{
        
@@ -59,9 +55,8 @@ router.patch('/:userId', (req,res) => {
     })
 })
 
-//Delete User
 router.delete('/:userId', (req,res) =>{
-    User.findByIdAndRemove(req.params.userId).then((user) => {
+    User.delete(req.params.userId).then((user) => {
         console.log('success');
         res.send(200)
     }).catch((err) => {

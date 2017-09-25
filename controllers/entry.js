@@ -19,16 +19,9 @@ router.post("/:id", (req, res) => {
   const entry = new Entry({
     content: req.body.content,
     time: new Date()
-    // meter: req.body.meter
   })
 
-  // router.update("/:id", (re, res) => {
-  //   const dailyEntry = Journal[0];
-  //   console.log(dailyEntry);
-  //   Journal.findByIdAndUpdate(dailyEntry.id).then((entry) => {
-  //     res.send("successfully updated");
-  //   })
-  // })
+
 
   Journal.findById(req.params.id).then( (journal) => {
     journal.dailyEntry.push(entry);
@@ -58,7 +51,6 @@ router.put("/:id", (req, res) => {
     })
   })
 
-//note to self, get things from array of objects within array of objects
 router.delete("/:id", (req,res) => {
   const dailyEntry = Journal[0];
   console.log(dailyEntry);
@@ -66,13 +58,6 @@ router.delete("/:id", (req,res) => {
     res.send("Successfully deleted");
   })
 })
-// router.delete("/:id", (req,res) => {
-//   Journal.findOneAndRemove({_id: req.params.id}).then((entry) => {
-//     res.send("Successfully deleted");
-//   })
-//   .catch(err => console.log(err));
-// });
-
 
 
 module.exports = router;
