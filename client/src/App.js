@@ -30,7 +30,7 @@ componentWillMount(){
   axios.get('/api/users').then((res)=>{
     // console.log(res.data);
     this.setState({users: res.data})
-    // console.log(this.state.users)
+    console.log('App.js ' + this.state.users)
   })
 }
 
@@ -72,7 +72,8 @@ _logInAndPassNewUser = (user) => {
   render() {
     return (
       <div>
-        <Navbar />
+        <NavBar users={this.state.user}
+            loggedIn={this.state.loggedIn}/>
       <Router>
         <div>
         <Route exact path ="/"  render={routeProps => 
