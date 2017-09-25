@@ -34,8 +34,8 @@ class DailyEntries extends Component{
     }
 
     deleteThis(){
-        const id = this.state.entries._id
-        console.log(id);
+        
+        // axios.delete(`/api/entry/${entri}`)
        
     }
 

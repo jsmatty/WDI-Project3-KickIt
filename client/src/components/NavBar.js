@@ -15,7 +15,8 @@ class NavBar extends Component {
     return (
       <div>
         
-         <nav>
+      <nav>
+        adfasdfasdf
         <NavBarStyle class = "nav-wrapper">
           <button><Link to= "/" class= "brand-logo">Kick-It</Link></button>
         </NavBarStyle>

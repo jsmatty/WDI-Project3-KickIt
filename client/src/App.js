@@ -14,33 +14,59 @@ import JournalContainer from './components/Journal/JournalContainer';
 import NavBar from './components/NavBar';
 
 class App extends Component {
-  constructor() {
-  super()
-  this.state = {
-    login: false
-    //var login or not. get info from user (username), login make API call. 
-    //default for login
-   }
+    constructor(){
+        super();
+        this.state = {
+            loggedIn: false,
+            users: [],
+            user:[]
+            
+        }
+    }
+
+componentWillMount(){
+  axios.get('/api/user').then((res)=>{
+    console.log(res.data);
+    this.setState({users: res.data})
+    console.log(this.state.users)
+  })
 }
 
-  _handleLogin= function(username, password) {
-  axios.post("/api/login",{username, password})
-    .then((res) => {
+_updateUsers = (data) => {
 
-      const newUser = {...this.state};
+  this.setState({users: data})
+}
 
-      if(res.data.user){
-        newUser.username = res.data.username;
-        newUser.password = res.data.password;
-      }else{
-        newUser.loginError = res.data
-      }this.setState(newUser)
-        
-    console.log(res.data);
+
+_logIn = () => {
+
+    this.setState({
+      loggedIn: true
+      
+    })
+}
+
+_logOut = () => {
   
-   })
-  };
+  this.setState({loggedIn: false});
+    
+}
+
+_setLoggedInUser = (user) => {
+
+  this.setState({
+    user: user
+  })
+}
+
+_logInAndPassNewUser = (user) => {
+
+  this.setState({
+    loggedIn:true,
+    user: user
+  })
   
+}
   render() {
     return (
       <div>

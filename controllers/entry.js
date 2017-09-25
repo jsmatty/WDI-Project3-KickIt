@@ -43,7 +43,10 @@ router.put("/:id", (req, res) => {
   console.log('UPDATE');
     const dailyEntry = Journal[0];
     console.log(dailyEntry);
-    Entry.findByIdAndUpdate(req.params.entryId).then((entry) => {
+    Entry.findByIdAndUpdate(req.params.entryId, {
+      content: req.body.content
+    }).then((entry) => {
+      res.json(entry)
       res.send("successfully updated");
     })
       Journal.findById(req.params.id).then( (journal) => {
@@ -51,7 +54,7 @@ router.put("/:id", (req, res) => {
       journal.save().then((entry) => {
         console.log("Success!");
         res.json(entry);
-      }).catch( (err) => console.log(err))
+      }).catch((err) => console.log(err))
     })
   })
 

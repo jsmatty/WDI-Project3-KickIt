@@ -4,7 +4,7 @@ const mongoose = require ('mongoose');
 
 //created variables = new schema
 const boardSchema = mongoose.Schema({
-  articles: [String],
+  articles: String,
   images: String
 });
 

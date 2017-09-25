@@ -1,51 +1,72 @@
 const express = require('express');
-const User = require('../models/User');
-const router = express.Router();
+const User = require('../models/user');
+const router = express.Router({mergeParams: true});
 
 
-router.get("/", (req,res) => {
- SignUp.find({}).then((signUps) => {
-    res.json(signUps);
-    console.log('HELLO?')
-  });
+
+//Get List of Users
+router.get('/', (req,res) => {
+    User.find().then((Users) => {
+        res.json(Users)
+    }).catch(err => console.log(err))
 });
 
-router.post('/', (req, res) => {
-  const newUser = new User({
-    name: req.body.name,
-    email: req.body.email,
-    username: req.body.username,
-    password: req.body.password,
-    age: req.body.age,
-    addiction: req.body.addiction
-  })
-  newUser.save().then((user) => {
-      console.log("Success!");
-      res.json(user);
-    }).catch( (err) => console.log(err))
-  })
+//User's individual show page
+router.get('/:userId', (req,res)=> {
+    User.findById(req.params.userId).then((user) => {
+        res.json(user);
+    }).catch(err => console.log(err))
+})
 
 
-router.put("/login", (req, res) => {
-  //save username and password
-  const username = req.body.username;
-  const password = req.body.password;
-  //grab users from database
- //return a list of users,
- user.find().then((users) => {
- 
- //using list find one. username matches their username.
- const someUser = 
-  user.find().then((user) => {
-    return user.username === username
- })
- if (userOne.password=== password)
-    res.json(someUser)
- });
- //then match passwords(===)
- //if passwords match
- //send Login Successful
-}
-) 
+
+//Create a new user
+router.post('/', (req,res) => {
+    const name = req.body.name;
+    const email = req.body.email;
+    const username = req.body.username;
+    const password = req.body.password;
+    const age = req.body.age;
+    const addiction = req.body.addiction;
+
+    const newUser = new User();
+    newUser.name = name;
+    newUser.email = email;
+    newUser.username = username;
+    newUser.password = password;
+    newUser.age = age;
+    newUser.addiction = addiction;
+
+    newUser.save().then((user)=>{
+        res.json(user);
+    }).catch((err)=> {
+        console.log(err)
+    })
+});
+
+
+
+//Edit User
+router.put('/:userId', (req,res) => {
+    User.findByIdAndUpdate(req.body._id, req.body).then((user)=>{
+       
+        console.log('success!')
+        res.json(user);
+    }).catch((err) => {
+        console.log(err);
+    })
+})
+
+//Delete User
+router.get('/:userId/delete', (req,res) =>{
+    User.findByIdAndRemove(req.params.userId).then((user) => {
+        console.log('success');
+        res.send(200)
+    }).catch((err) => {
+        console.log(err)
+    })
+})
+
+
 
 module.exports = router;
