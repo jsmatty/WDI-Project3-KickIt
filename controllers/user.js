@@ -46,12 +46,14 @@ router.post('/', (req,res) => {
 
 
 
+
 //Edit User
-router.put('/:userId', (req,res) => {
+router.patch('/:userId', (req,res) => {
     User.findByIdAndUpdate(req.body._id, req.body).then((user)=>{
        
         console.log('success!')
         res.json(user);
+        user.save();
     }).catch((err) => {
         console.log(err);
     })

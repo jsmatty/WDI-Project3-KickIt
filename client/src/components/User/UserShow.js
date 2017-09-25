@@ -56,6 +56,7 @@ class UserShow extends Component {
           <h3>Age: {this.state.age}</h3>
           <h3>Addiction: {this.state.addiction}</h3>
         </div>
+        <Link to={`/user/${this.props.match.params.userId}/edit`}><button>EDITt</button></Link>
         <button onClick={this.deleteThis}>DELETE ACCOUNT</button>
       </div>
     );

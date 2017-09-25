@@ -12,7 +12,8 @@ import LogIn from './components/SignUp/LogIn';
 import CreateAccount from './components/SignUp/CreateAccount';
 import JournalContainer from './components/Journal/JournalContainer';
 import NavBar from './components/NavBar';
-import UserShow from './components/User/UserShow'
+import UserShow from './components/User/UserShow';
+import EditUserPage from './components/User/EditUserPage';
 
 
 class App extends Component {
@@ -103,7 +104,7 @@ _logInAndPassNewUser = (user) => {
         <Route exact path = "/journal" component={JournalContainer} />
 
         <Route exact path = "/entry/:id" component={EntryShow} />
-
+        <Route exact path = '/user/:userId/edit' component={EditUserPage} />
         <Route exact path = "/user/:userId"  render={routeProps =>
           <UserShow {...routeProps}
           users={this.state.user}
